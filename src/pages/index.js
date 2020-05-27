@@ -4,8 +4,11 @@ import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import { rhythm } from '../utils/typography'
+import Header from '../components/Header'
+
+import Img from 'gatsby-image'
 
 export const pageQuery = graphql`
     query IndexQuery {
@@ -24,6 +27,8 @@ export const pageQuery = graphql`
         cosmicjsSettings(slug: { eq: "general" }) {
             metadata {
                 site_title
+                site_heading
+                site_subheading
                 about_text
                 author_name
                 author_bio
@@ -32,23 +37,35 @@ export const pageQuery = graphql`
                 }
             }
         }
+        file(relativePath: { eq: "max_header.png" }) {
+          childImageSharp {
+            # Specify the image processing specifications right in the query.
+            # Makes it trivial to update as your page's design changes.
+            fluid(maxWidth: 500, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
     }
 `
 
 class BlogIndex extends React.Component {
   render() {
-    const siteTitle = get(
-      this,
-      'props.data.cosmicjsSettings.metadata.site_title'
-    )
+    const siteTitle = get(this, 'props.data.cosmicjsSettings.metadata.site_title')
     const posts = get(this, 'props.data.allCosmicjsPosts.edges')
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const aboutText = get(this, 'props.data.cosmicjsSettings.metadata.about_text')
     const location = get(this, 'props.location')
+    const siteHeading = get(this, 'props.data.cosmicjsSettings.metadata.site_heading')
+    const siteSubheading = get(this, 'props.data.cosmicjsSettings.metadata.site_subheading')
+    const maxHeader = get(this, 'props.data.file.childImageSharp.fluid')
+
+    console.log(maxHeader)
 
     return (
       <Layout location={location}>
         <Helmet title={siteTitle} />
+        <Header heading={siteHeading} subheading={siteSubheading} img={maxHeader}/>
         <section id="Services">
           <h2>What I do</h2>
           <div>
