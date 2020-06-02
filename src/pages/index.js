@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import { rhythm } from '../utils/typography'
 import Header from '../components/Header'
 
 import Img from 'gatsby-image'
@@ -88,9 +87,7 @@ class BlogIndex extends React.Component {
             return (
               <div key={node.slug}>
                 <h3
-                  style={{
-                    marginBottom: rhythm(1 / 4),
-                  }}
+
                 >
                   <Link style={{ boxShadow: 'none' }} to={`/posts/${node.slug}`}>
                     {title}

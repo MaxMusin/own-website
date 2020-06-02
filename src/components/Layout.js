@@ -17,24 +17,24 @@ const GlobalStyle = createGlobalStyle`
   
   @font-face {
       font-family: 'aaux_nextmedium';
-      src: url('../../static/fonts/aauxnext-md-webfont.woff2') format('woff2'),
-           url('../../static/fonts/aauxnext-md-webfont.woff') format('woff');
+      src: url('../fonts/aauxnext-md-webfont.woff2') format('woff2'),
+           url('../fonts/aauxnext-md-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   }
 
   @font-face {
       font-family: 'aaux_nextbold';
-      src: url('../../static/fonts/aauxnext-bd-webfont.woff2') format('woff2'),
-           url('../../static/fonts/aauxnext-bd-webfont.woff') format('woff');
+      src: url('../fonts/aauxnext-bd-webfont.woff2') format('woff2'),
+           url('../fonts/aauxnext-bd-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   }
 
   @font-face {
       font-family: 'aaux_nextsemibold';
-      src: url('../../static/fonts/aauxnext-sm-webfont.woff2') format('woff2'),
-           url('../../static/fonts/aauxnext-sm-webfont.woff') format('woff');
+      src: url('../fonts/aauxnext-sm-webfont.woff2') format('woff2'),
+           url('../fonts/aauxnext-sm-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   }
