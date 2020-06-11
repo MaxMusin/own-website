@@ -9,6 +9,16 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-scroll-reveal`,
+    `gatsby-plugin-transition-link`,
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

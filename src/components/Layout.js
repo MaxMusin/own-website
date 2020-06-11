@@ -40,7 +40,13 @@ const GlobalStyle = createGlobalStyle`
   }
   html {
     font-family: 'aaux_nextmedium', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+  *, 
+  ::after, ::before {
+    box-sizing: border-box;
+}
 `;
 
 const colors = {
@@ -52,7 +58,9 @@ const colors = {
 
 const defaultTheme = {
   font: {
-    primary: '"aaux_nextmedium", sans-serif'
+    primary: '"aaux_nextmedium", sans-serif',
+    secondary: '"aaux_nextsemibold", sans-serif',
+    tertiary: '"aaux_nextbold", sans-serif',
   },
   color: {
     primary: colors.babyBlue,
@@ -63,7 +71,8 @@ const defaultTheme = {
 };
 
 const Container = styled.div`
-  max-width: 1240px;
+  max-width: 1272px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 16px;
 `
@@ -81,7 +90,7 @@ export default ({ children, location }) => (
       }
     `}
     render={data => {
-      let header
+      let isHome
 
       let rootPath = `/`
       let postsPath = `/posts`
@@ -91,17 +100,16 @@ export default ({ children, location }) => (
       }
 
       if (location.pathname === rootPath || location.pathname === postsPath) {
-        //header = (
-          //<div></div>
-        //)
+        isHome = true;
+      } else {
+        isHome = false;
       }
       return (
         <>
           <ThemeProvider theme={defaultTheme}>
             <Fragment>
               <GlobalStyle />
-              <Menu/>
-              {/*{header}*/}
+              <Menu isHome={isHome}/>
               <Container>
                 {children}
               </Container>

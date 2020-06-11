@@ -2,56 +2,73 @@ import React from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import Button from './Button'
-import { useStaticQuery, graphql } from "gatsby"
-// import maxHeader from '../../images/max_header.png';
+import Col from './Col'
+import Row from './Row'
+import { media } from './style/mediaQueries'
 
 const HeaderWrapper = styled.header`
-  display: flex;
-  flex-wrap: nowrap;
+  margin-bottom: 190px;
 `
 const ImageWrapper = styled.div`
-  width: 30%;
-  max-width: 350px;
+  width: 100%;
+  padding-left: 48px;
+  padding-right: 48px;
+  margin-top: 60px;
+
+  ${media.sm`
+    flex-direction: row;
+    padding-right: 0;
+    padding-left: 42px;
+    margin-top: 0px;
+  `}
 `
 
 const Heading = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  width: 65%;
-  padding-right: 130px;
   justify-content: center;
-  
+  align-items: flex-start;
+  height: 100%;
+
   h1 {
     font-family: aaux_nextsemibold;
     font-size: 32px;
-    color: #220E0C;
+    color: #220e0c;
     letter-spacing: 1.4px;
     line-height: 48px;
     margin-bottom: 24px;
   }
-  
+
   h2 {
-    font-family: aaux_nextsemibold;
+    font-family: aaux_nextbold;
     font-size: 42px;
-    color: #220E0C;
+    color: #220e0c;
     letter-spacing: 1.4px;
     line-height: 54px;
   }
+
+  button {
+    margin-top: 34px;
+  }
 `
 
-
-const Header = ({heading, subheading, img}) => (
+const Header = ({ heading, subheading, img }) => (
   <HeaderWrapper>
-    <Heading>
-      <h1>{heading}</h1>
-      <h2>{subheading}</h2>
-      <Button>Let's talk</Button>
-    </Heading>
-    <ImageWrapper>
-      <Img fluid={img} alt="" />
-    </ImageWrapper>
-
+    <Row>
+      <Col col={7}>
+        <Heading>
+          <h1>{heading}</h1>
+          <h2>{subheading}</h2>
+          <Button>Let's talk</Button>
+        </Heading>
+      </Col>
+      <Col col={4} offset={1}>
+        <ImageWrapper>
+          <Img fluid={img} alt="" />
+        </ImageWrapper>
+      </Col>
+    </Row>
   </HeaderWrapper>
 )
 

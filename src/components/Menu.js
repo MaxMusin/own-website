@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
  * We will include our MenuItem Component
  */
 import MenuItem from './MenuItem'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 /*
  * The list of our Menu Titles (Sections) as keys, with their
@@ -20,7 +21,7 @@ const menuItems = {
 /*
  * Our menu component
  */
-const Menu = () => {
+const Menu = ({isHome}) => {
   /*
    * Store the active menuItem in state to force update
    * when changed
@@ -93,8 +94,17 @@ const Menu = () => {
   /*
    * Create the list of MenuItems based on the sections object we have defined above
    */
-  const menuList = Object.keys(menuItems).map((e, i) =>
-    <MenuItem itemName={e} key={`menuitem_${i}`} active={e === activeItem ? 'True' : 'False'} />
+  const menuList = Object.keys(menuItems).map((e, i) => {
+      if(isHome) {
+        return <MenuItem itemName={e} key={`menuitem_${i}`} active={e === activeItem ? 'True' : 'False'} />
+      } else {
+        return (
+          <AniLink cover to={`/#${e}`} direction="right" bg="#E53935">
+            {e}
+          </AniLink>
+        )
+      }
+    }
   )
 
   /*

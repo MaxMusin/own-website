@@ -7,6 +7,7 @@ import BackgroundImage from 'gatsby-background-image'
 
 import Bio from '../components/Bio'
 import Layout from '../components/Layout'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -25,7 +26,9 @@ class BlogPostTemplate extends React.Component {
         <div
 
         >
-          <Link to="/">← Back to main</Link>
+          <AniLink cover to={`/`} direction="right" bg="#E53935">
+            ← Back to main
+          </AniLink>
         </div>
         <h1
 

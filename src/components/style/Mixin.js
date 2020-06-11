@@ -46,11 +46,15 @@ export function separator() {
 };
 
 // Ratios use in the whole website, feel free to add some other
-export const Ratios = {
-  square: '100%', // 1:1
-  landscape: '75%', // 4:3
-  portrait: '133.45%', // 3:4
-  longLandscape: '66.57%', // 3:2
-  longPortrait: '150%', // 2:3
-  video: '56.25%', // 16:9
+export const Width = {
+  12: '100%',
+  9: '75%',
+  8: '66.666667%',
+  7: '58.333333%',
+  6: '50%',
+  4: '33.333333%',
+  3: '25%',
+  2: '16.666667%',
+  1: '8.333333%',
+  0: '0'
 };

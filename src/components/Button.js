@@ -1,23 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { fontSize, lineHeight, separator } from "./style/Mixin";
+import { fontSize, lineHeight } from "./style/Mixin";
 import { media } from "./style/mediaQueries";
 
 const ButtonWrap = styled.button`
   ${fontSize(16)};
+  ${lineHeight(15)};
   font-weight: normal;
   border-radius: 5px;
   position: relative;
   cursor: pointer;
   font-family: ${props => props.theme.font.primary};
   border: none;
-  background: transparent;
+  background-image: linear-gradient(90deg, #E35D5B 0%, #E53935 100%);
   width: auto;
   display: inline-flex;
   color: white;
-  background: red;
-  // gradient
+  padding: 10px 20px 11px;
+  letter-spacing: 1.4px;
 
   &:focus,
   &:hover {

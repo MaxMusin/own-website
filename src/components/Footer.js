@@ -1,47 +1,68 @@
 import React from 'react'
 // import gatsbyLogo from '../../static/gatsby.png'
 import styled from "styled-components"
+import Logo from "../assets/logo.svg";
 
 const FooterWrapper = styled.div`
-  display: flex;
+  background: #F9F9F9;
+`
+
+const Container = styled.div`
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 52px 16px;
+    display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
 `
-const FooterText = styled.div`
+
+const FooterMain = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 0 0 50%;
+`
+
+const FooterTextWrapper = styled.div`
   align-self: auto;
-  flex: 0 0 50%;
   p{
-    color: #6e6d7a;
-    margin-left: 30px;
-    font-size: 18px;
-    line-height: 24px;
+    margin-left: 22px;
+    font-family: AauxNext-Medium;
+    font-size: 16px;
+    color: #C4ADAD;
+    letter-spacing: 1.4px;
+    font-family: AauxNext-Medium;
+    font-size: 16px;
+    color: #C4ADAD;
+    letter-spacing: 1.4px;
+    margin-bottom: 4px;
   }
 `
-const CopywrightContainer = styled(FooterText)`
+const CopywrightContainer = styled(FooterTextWrapper)`
   p{
-    margin-top: 10px;
-    color: #6e6d7a;
-    font-size: 14px;
-    line-height: 20px;
     text-align: right;
+    margin-bottom: 0;
+    margin-top: 18px;
   }
 `
 
 const Footer = () => (
   <FooterWrapper>
-    <FooterText>
-      <p>
-        Maxime Musin<br/>
-        Freelance Front-end Developer & UX/UI Designer Consultant
-      </p>
-    </FooterText>
-    <CopywrightContainer>
-      <p>
-        © 2020 Maxime Musin<br/>
-        Made with ❤ & passion
-      </p>
-    </CopywrightContainer>
+    <Container>
+      <FooterMain>
+        <Logo/>
+        <FooterTextWrapper>
+          <p>Maxime Musin</p>
+          <p>Freelance Front-end Developer & UX/UI Designer Consultant</p>
+        </FooterTextWrapper>
+      </FooterMain>
+      <CopywrightContainer>
+        <p>
+          © 2020 Maxime Musin
+        </p>
+      </CopywrightContainer>
+    </Container>
   </FooterWrapper>
 )
 
