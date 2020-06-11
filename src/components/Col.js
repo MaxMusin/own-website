@@ -6,7 +6,7 @@ import { Width } from './style/Mixin'
 const ColWrapper = styled.div`
   position: relative;
   width: 100%;
-  padding: 0 16px;
+  padding: 0 20px;
   ${media.sm`
         flex: 0 0 ${(props) => Width[props.col]};
         max-width: ${(props) => Width[props.col]};

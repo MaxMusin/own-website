@@ -74,7 +74,7 @@ const Container = styled.div`
   max-width: 1272px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 20px;
 `
 
 export default ({ children, location }) => (

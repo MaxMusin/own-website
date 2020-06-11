@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const RowWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-right: -16px;
-  margin-left: -16px;
+  margin-right: -20px;
+  margin-left: -20px;
 `
 
 const Row = ({children, className}) => (

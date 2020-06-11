@@ -10,12 +10,14 @@ const HeaderWrapper = styled.header`
   margin-bottom: 190px;
 `
 const ImageWrapper = styled.div`
-  width: 100%;
-  padding-left: 48px;
-  padding-right: 48px;
+  //padding-left: 48px;
+  //padding-right: 48px;
   margin-top: 60px;
+  max-width: 350px;
 
   ${media.sm`
+    max-width: initial;
+    width: 100%;
     flex-direction: row;
     padding-right: 0;
     padding-left: 42px;
