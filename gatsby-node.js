@@ -2,6 +2,13 @@ const each = require('lodash/each')
 const Promise = require('bluebird')
 const path = require('path')
 
+exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
+  const config = getConfig()
+  if (stage.startsWith('develop') && config.resolve) {
+    config.resolve.alias = { ...config.resolve.alias, 'react-dom': '@hot-loader/react-dom' }
+  }
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const indexPage = path.resolve('./src/pages/index.js')
