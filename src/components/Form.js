@@ -34,7 +34,7 @@ const FormGroup = styled.div`
   
   input,
   textarea {
-    font-family: AauxNext-Medium;
+    font-family: ${(props) => props.theme.font.primary};
     font-size: 16px;
     color: #220e0c;
     letter-spacing: 1.4px;
@@ -61,7 +61,7 @@ const FormGroup = styled.div`
 `
 
 const Label = styled.label`
-  font-family: AauxNext-Medium;
+  font-family: ${(props) => props.theme.font.primary};
   font-size: 14px;
   color: #c4adad;
   letter-spacing: 1.4px;

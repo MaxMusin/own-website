@@ -3,6 +3,9 @@ require("dotenv").config({
 })
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: `https://maximemusin.me/`
+  },
   plugins: [
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
@@ -54,7 +57,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: 'UA-169428466-1',
+        head: true,
       },
     },
   ],

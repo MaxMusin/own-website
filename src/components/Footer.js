@@ -50,7 +50,7 @@ const FooterTextWrapper = styled.div`
   `}
   
   p {
-    font-family: AauxNext-Medium;
+    font-family: ${(props) => props.theme.font.primary};
     font-size: 16px;
     color: #7a6d6d;
     letter-spacing: 1.4px;

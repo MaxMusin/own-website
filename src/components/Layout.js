@@ -1,14 +1,14 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
-import { reset } from "styled-reset";
-import styled from "styled-components"
+import { reset } from 'styled-reset'
+import styled from 'styled-components'
 
 import Menu from './Menu'
 import gatsbyLogo from '../../static/gatsby.png'
 
-import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import Footer from './Footer'
 
@@ -38,23 +38,40 @@ const GlobalStyle = createGlobalStyle`
       font-weight: normal;
       font-style: normal;
   }
+  
   html {
     font-family: 'aaux_nextmedium', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  
   *, 
   ::after, ::before {
     box-sizing: border-box;
-}
-`;
+  }
+  
+  ::selection {
+    color: #fff !important;
+    background: #e35d5b;
+  }
+  
+  ::-moz-selection {
+    color: #fff !important;
+    background: #e35d5b;
+  }
+  
+  ::-webkit-selection {
+    color: #fff !important;
+    background: #e35d5b;
+  }
+`
 
 const colors = {
-  white: "#FFFFFF",
-  black: "#2A2A2A",
-  darkBlue: "#383D59",
-  babyBlue: "#47CDE2"
-};
+  white: '#FFFFFF',
+  black: '#2A2A2A',
+  darkBlue: '#383D59',
+  babyBlue: '#47CDE2',
+}
 
 const defaultTheme = {
   font: {
@@ -65,10 +82,10 @@ const defaultTheme = {
   color: {
     primary: colors.babyBlue,
     text: {
-      primary: colors.darkBlue
-    }
-  }
-};
+      primary: colors.darkBlue,
+    },
+  },
+}
 
 const Container = styled.div`
   max-width: ${(props) => props.width}px;
@@ -89,7 +106,7 @@ export default ({ children, location, width }) => (
         }
       }
     `}
-    render={data => {
+    render={(data) => {
       let isHome
 
       let rootPath = `/`
@@ -100,20 +117,18 @@ export default ({ children, location, width }) => (
       }
 
       if (location.pathname === rootPath || location.pathname === postsPath) {
-        isHome = true;
+        isHome = true
       } else {
-        isHome = false;
+        isHome = false
       }
       return (
         <>
           <ThemeProvider theme={defaultTheme}>
             <Fragment>
               <GlobalStyle />
-              <Menu isHome={isHome}/>
-              <Container width={width}>
-                {children}
-              </Container>
-              <Footer/>
+              <Menu isHome={isHome} />
+              <Container width={width}>{children}</Container>
+              <Footer />
             </Fragment>
           </ThemeProvider>
         </>

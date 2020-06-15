@@ -8,6 +8,7 @@ import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import sr from '../components/ScrollReveal'
+import { trackCustomEvent } from 'gatsby-plugin-google-analytics'
 
 import Layout from '../components/Layout'
 import Row from '../components/Row'
@@ -406,6 +407,14 @@ class BlogIndex extends React.Component {
                       to={`/posts/${node.slug}`}
                       direction="left"
                       bg="#E53935"
+                      onClick={e => {
+                        e.preventDefault()
+                        trackCustomEvent({
+                          category: "Read last blogpost",
+                          action: "Click",
+                          label: {title},
+                        })
+                      }}
                     >
                       Read it
                     </BlogPostButton>

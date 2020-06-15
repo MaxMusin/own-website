@@ -34,7 +34,7 @@ const Heading = styled.div`
   height: 100%;
 
   h1 {
-    font-family: aaux_nextsemibold;
+    font-family: ${(props) => props.theme.font.secondary};
     font-size: 32px;
     color: #220e0c;
     letter-spacing: 1.4px;
@@ -43,7 +43,7 @@ const Heading = styled.div`
   }
 
   h2 {
-    font-family: aaux_nextbold;
+    font-family: ${(props) => props.theme.font.tertiary};
     font-size: 36px;
     color: #220e0c;
     letter-spacing: 1.4px;

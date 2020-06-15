@@ -6,8 +6,8 @@ import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
-import Bio from '../components/Bio'
 import Layout from '../components/Layout'
+import ShareButtons from '../components/ShareButtons'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import { media } from '../components/style/mediaQueries'
 import { fontSize, lineHeight } from '../components/style/Mixin'
@@ -30,10 +30,16 @@ const ReturnButton = styled(AniLink)`
   text-decoration: none;
 `
 
+const BlogHeader = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+  justify-content: space-between;
+`
+
 const Author = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 60px;
   align-items: center;
 `
 
@@ -45,31 +51,32 @@ const AuthorContent = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 16px;
-  
-  p{
-    font-family: AauxNext-Medium;
+
+  p {
+    font-family: ${(props) => props.theme.font.primary};
     font-size: 16px;
     color: #220e0c;
     letter-spacing: 1.4px;
     line-height: 26px;
-    
+
     &:last-child {
-      color: #C4ADAD;
+      color: #c4adad;
       font-size: 14px;
     }
   }
-  
 `
 
+const ShareButtonsWrapper = styled.div``
+
 const BlogTitle = styled.h1`
-  font-family: AauxNext-Bold;
+  font-family: ${(props) => props.theme.font.tertiary};
   font-size: 36px;
   color: #220e0c;
   letter-spacing: 1.4px;
   line-height: 48px;
   margin-bottom: 40px;
   margin-top: 60px;
-  
+
   ${media.sm`
     font-size: 42px;
     line-height: 54px;
@@ -77,7 +84,7 @@ const BlogTitle = styled.h1`
 `
 const BlogText = styled.div`
   margin-bottom: 90px;
-  
+
   ol {
     list-style: decimal;
     padding-left: 21px;
@@ -86,7 +93,7 @@ const BlogText = styled.div`
   p,
   li {
     margin-bottom: 29px;
-    font-family: AauxNext-Medium;
+    font-family: ${(props) => props.theme.font.primary};
     font-size: 16px;
     color: #220e0c;
     letter-spacing: 1.4px;
@@ -94,16 +101,19 @@ const BlogText = styled.div`
     text-align: justify;
 
     strong {
-      font-family: AauxNext-Bold;
+      font-family: ${(props) => props.theme.font.tertiary};
+    }
+    
+    em {
+      font-style: italic;
     }
   }
 
   a {
-    background: -webkit-linear-gradient(90deg, #e35d5b 0%, #e53935 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #e35d5b;
     display: inline-block;
     position: relative;
+    text-decoration: none;
 
     &:before {
       content: '';
@@ -112,12 +122,12 @@ const BlogText = styled.div`
       width: 100%;
       display: block;
       position: absolute;
-      bottom: 8px;
+      bottom: 5px;
     }
   }
 
   h2 {
-    font-family: AauxNext-SemiBold;
+    font-family: ${(props) => props.theme.font.secondary};
     font-size: 36px;
     line-height: 48px;
     color: #220e0c;
@@ -141,7 +151,7 @@ const BlogText = styled.div`
       margin-left: 0.6em;
       color: rgba(0, 0, 0, 0.68);
       position: relative;
-      font-family: AauxNext-SemiBold;
+      font-family: ${(props) => props.theme.font.secondary};
       top: -22px;
       font-size: 30px;
       letter-spacing: 0.6em;
@@ -162,7 +172,10 @@ class BlogPostTemplate extends React.Component {
     )
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const location = get(this, 'props.location')
+    const site = get(this, 'props.data.site')
     const { previous, next } = this.props.pageContext
+
+    console.log(`${site.siteMetadata.domain}${post.slug}`)
 
     return (
       <Layout location={location} width={680}>
@@ -172,37 +185,31 @@ class BlogPostTemplate extends React.Component {
         </ReturnButton>
 
         <BlogTitle>{post.title}</BlogTitle>
-        <Author>
-          <AuthorImageWrapper>
-            <Img
-              fluid={author.author_avatar.local.childImageSharp.fluid}
-              alt=""
+        <BlogHeader>
+          <Author>
+            <AuthorImageWrapper>
+              <Img
+                fluid={author.author_avatar.local.childImageSharp.fluid}
+                alt={author.author_name}
+              />
+            </AuthorImageWrapper>
+            <AuthorContent>
+              <p>{author.author_name}</p>
+              <p>{post.created}</p>
+            </AuthorContent>
+          </Author>
+          <ShareButtonsWrapper>
+            <ShareButtons
+              url={`${site.siteMetadata.domain}${post.slug}`}
+              title={post.title}
             />
-          </AuthorImageWrapper>
-          <AuthorContent>
-            <p>{author.author_name}</p>
-            <p>{post.created}</p>
-          </AuthorContent>
-        </Author>
-
+          </ShareButtonsWrapper>
+        </BlogHeader>
         <BlogPostImageWrapper>
           <Img fluid={post.metadata.hero.local.childImageSharp.fluid} alt="" />
         </BlogPostImageWrapper>
 
         <BlogText dangerouslySetInnerHTML={{ __html: post.content }} />
-
-        <Author>
-          <AuthorImageWrapper>
-            <Img
-              fluid={author.author_avatar.local.childImageSharp.fluid}
-              alt=""
-            />
-          </AuthorImageWrapper>
-          <AuthorContent>
-            <p>{author.author_name}</p>
-            <p>{post.created}</p>
-          </AuthorContent>
-        </Author>
         <ul
           style={{
             display: 'flex',
@@ -237,10 +244,16 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
+    site {
+      siteMetadata {
+        domain: siteUrl
+      }
+    }
     cosmicjsPosts(slug: { eq: $slug }) {
       id
       content
       title
+      slug
       created(formatString: "MMMM DD, YYYY")
       metadata {
         hero {
