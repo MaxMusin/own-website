@@ -99,7 +99,7 @@ const Menu = ({isHome}) => {
         return <MenuItem itemName={e} key={`menuitem_${i}`} active={e === activeItem ? 'True' : 'False'} />
       } else {
         return (
-          <AniLink cover to={`/#${e}`} direction="right" bg="#E53935">
+          <AniLink cover to={`/#${e}`} key={`menuitem_${i}`} direction="right" bg="#E53935">
             {e}
           </AniLink>
         )

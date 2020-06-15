@@ -44,10 +44,15 @@ const Heading = styled.div`
 
   h2 {
     font-family: aaux_nextbold;
-    font-size: 42px;
+    font-size: 36px;
     color: #220e0c;
     letter-spacing: 1.4px;
-    line-height: 54px;
+    line-height: 48px;
+    
+    ${media.sm`
+      font-size: 42px;
+      line-height: 54px;
+  `}
   }
 
   button {

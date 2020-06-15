@@ -71,13 +71,13 @@ const defaultTheme = {
 };
 
 const Container = styled.div`
-  max-width: 1272px;
+  max-width: ${(props) => props.width}px;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 `
 
-export default ({ children, location }) => (
+export default ({ children, location, width }) => (
   <StaticQuery
     query={graphql`
       query LayoutQuery {
@@ -110,7 +110,7 @@ export default ({ children, location }) => (
             <Fragment>
               <GlobalStyle />
               <Menu isHome={isHome}/>
-              <Container>
+              <Container width={width}>
                 {children}
               </Container>
               <Footer/>

@@ -32,6 +32,7 @@ const Section = styled.section`
 const TitleSection = styled.h2`
   font-family: ${(props) => props.theme.font.secondary};
   font-size: 36px;
+  line-height: 48px;
   color: #220e0c;
   letter-spacing: 1.4px;
   margin-bottom: 90px;
@@ -112,7 +113,7 @@ const BlogPostDate = styled.p`
   font-size: 16px;
   color: #c4adad;
   letter-spacing: 1.4px;
-  line-height: 24px;
+  line-height: 26px;
   margin-bottom: 32px;
 `
 
@@ -253,7 +254,6 @@ export const pageQuery = graphql`
         site_subheading
         about_text
         author_name
-        author_bio
         author_avatar {
           imgix_url
         }
@@ -340,7 +340,7 @@ class BlogIndex extends React.Component {
     const maxAbout = get(this, 'props.data.about_image.childImageSharp.fluid')
 
     return (
-      <Layout location={location}>
+      <Layout location={location} width={1272}>
         <Helmet title={siteTitle} />
         <Header
           heading={siteHeading}
