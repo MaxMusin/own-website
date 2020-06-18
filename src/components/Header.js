@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
+import Scroll from 'react-scroll-to-element'
 import Button from './Button'
 import Col from './Col'
 import Row from './Row'
@@ -8,6 +9,7 @@ import { media } from './style/mediaQueries'
 
 const HeaderWrapper = styled.header`
   margin-bottom: 190px;
+  margin-top: 83px;
 `
 const ImageWrapper = styled.div`
   //padding-left: 48px;
@@ -48,7 +50,7 @@ const Heading = styled.div`
     color: #220e0c;
     letter-spacing: 1.4px;
     line-height: 48px;
-    
+
     ${media.sm`
       font-size: 42px;
       line-height: 54px;
@@ -57,6 +59,11 @@ const Heading = styled.div`
 
   button {
     margin-top: 34px;
+    padding: 0;
+    
+    span {
+      padding: 10px 20px 11px;
+    }
   }
 `
 
@@ -67,7 +74,11 @@ const Header = ({ heading, subheading, img }) => (
         <Heading>
           <h1>{heading}</h1>
           <h2>{subheading}</h2>
-          <Button>Let's talk</Button>
+          <Button>
+            <Scroll type="id" element="contact">
+              Let's talk
+            </Scroll>
+          </Button>
         </Heading>
       </Col>
       <Col col={4} offset={1}>
