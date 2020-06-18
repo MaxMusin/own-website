@@ -9,9 +9,9 @@ const FooterWrapper = styled.div`
 `
 
 const Container = styled.div`
-  max-width: 1240px;
+  max-width: 1272px;
   margin: 0 auto;
-  padding: 52px 16px;
+  padding: 52px 20px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

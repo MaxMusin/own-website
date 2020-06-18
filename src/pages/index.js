@@ -27,7 +27,8 @@ import LinkedIn from '../assets/linkedin.svg'
 import { fontSize, lineHeight } from '../components/style/Mixin'
 
 const Section = styled.section`
-  margin-bottom: 170px;
+  margin-bottom: 130px;
+  padding-top: 40px;
 `
 
 const TitleSection = styled.h2`
@@ -68,7 +69,7 @@ const ServiceItem = styled(Col)`
   `}
 
   p {
-    font-family: AauxNext-Medium;
+    font-family: ${(props) => props.theme.font.primary};
     font-size: 16px;
     color: #7a6d6d;
     letter-spacing: 1.4px;
@@ -94,7 +95,7 @@ const BlogPostTitle = styled(SubTitleSection)`
 `
 
 const BlogPostTags = styled.div`
-  font-family: AauxNext-Medium;
+  font-family: ${(props) => props.theme.font.primary};
   font-size: 14px;
   color: #c4adad;
   letter-spacing: 1.4px;
@@ -102,7 +103,7 @@ const BlogPostTags = styled.div`
 `
 
 const BlogPostDescription = styled.p`
-  font-family: AauxNext-Medium;
+  font-family: ${(props) => props.theme.font.primary};
   font-size: 16px;
   color: #7a6d6d;
   letter-spacing: 1.4px;
@@ -110,7 +111,7 @@ const BlogPostDescription = styled.p`
   margin-bottom: 32px;
 `
 const BlogPostDate = styled.p`
-  font-family: AauxNext-Medium;
+  font-family: ${(props) => props.theme.font.primary};
   font-size: 16px;
   color: #c4adad;
   letter-spacing: 1.4px;
@@ -157,7 +158,7 @@ const AboutContent = styled.div`
 `
 
 const AboutText = styled.p`
-  font-family: AauxNext-Medium;
+  font-family: ${(props) => props.theme.font.primary};
   font-size: 16px;
   color: #7a6d6d;
   letter-spacing: 1.4px;
@@ -188,7 +189,7 @@ const ContactContent = styled.div`
 `
 
 const ContactText = styled.p`
-  font-family: AauxNext-Medium;
+  font-family: ${(props) => props.theme.font.primary};
   font-size: 16px;
   color: #220e0c;
   letter-spacing: 1.4px;
@@ -197,7 +198,7 @@ const ContactText = styled.p`
 `
 
 const ContactLabel = styled.p`
-  font-family: AauxNext-Medium;
+  font-family: ${(props) => props.theme.font.primary};
   font-size: 14px;
   color: #c4adad;
   letter-spacing: 1.4px;
@@ -205,7 +206,7 @@ const ContactLabel = styled.p`
 `
 
 const ContactEmail = styled.a`
-  font-family: AauxNext-SemiBold;
+  font-family: ${(props) => props.theme.font.secondary};
   font-size: 16px;
   color: #220e0c;
   letter-spacing: 1.4px;
@@ -348,7 +349,7 @@ class BlogIndex extends React.Component {
           subheading={siteSubheading}
           img={maxHeader}
         />
-        <Section id="Services">
+        <Section id="services">
           <TitleSection>What I do</TitleSection>
           <Row>
             <ServiceItem col={4} className="service">
@@ -380,7 +381,7 @@ class BlogIndex extends React.Component {
             </ServiceItem>
           </Row>
         </Section>
-        <Section id="Blog">
+        <Section id="blog">
           <TitleSection>Some blog posts</TitleSection>
           {posts.map(({ node }) => {
             const title = get(node, 'title') || node.slug
@@ -429,7 +430,7 @@ class BlogIndex extends React.Component {
             )
           })}
         </Section>
-        <Section id="About">
+        <Section id="about">
           <TitleSection>About me</TitleSection>
           <Row>
             <Col col={6}>
@@ -444,7 +445,7 @@ class BlogIndex extends React.Component {
             </Col>
           </Row>
         </Section>
-        <Section id="Contact">
+        <Section id="contact">
           <TitleSection>Just say hi.</TitleSection>
           <Row>
             <Col col={6}>

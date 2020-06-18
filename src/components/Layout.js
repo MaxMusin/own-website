@@ -4,9 +4,9 @@ import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import { reset } from 'styled-reset'
 import styled from 'styled-components'
-
-import Menu from './Menu'
-import gatsbyLogo from '../../static/gatsby.png'
+import { StateProvider } from "../context/store"
+import Navbar from './Nav/Navbar'
+import Wrapper from './Wrapper'
 
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
@@ -14,30 +14,6 @@ import Footer from './Footer'
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-  
-  @font-face {
-      font-family: 'aaux_nextmedium';
-      src: url('../fonts/aauxnext-md-webfont.woff2') format('woff2'),
-           url('../fonts/aauxnext-md-webfont.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-  }
-
-  @font-face {
-      font-family: 'aaux_nextbold';
-      src: url('../fonts/aauxnext-bd-webfont.woff2') format('woff2'),
-           url('../fonts/aauxnext-bd-webfont.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-  }
-
-  @font-face {
-      font-family: 'aaux_nextsemibold';
-      src: url('../fonts/aauxnext-sm-webfont.woff2') format('woff2'),
-           url('../fonts/aauxnext-sm-webfont.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-  }
   
   html {
     font-family: 'aaux_nextmedium', sans-serif;
@@ -121,15 +97,17 @@ export default ({ children, location, width }) => (
       } else {
         isHome = false
       }
+
+
       return (
         <>
           <ThemeProvider theme={defaultTheme}>
-            <Fragment>
+            <StateProvider>
               <GlobalStyle />
-              <Menu isHome={isHome} />
+              <Navbar isHome={isHome} />
               <Container width={width}>{children}</Container>
               <Footer />
-            </Fragment>
+            </StateProvider>
           </ThemeProvider>
         </>
       )
