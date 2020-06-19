@@ -207,7 +207,7 @@ class BlogPostTemplate extends React.Component {
           <Img fluid={post.metadata.hero.local.childImageSharp.fluid} alt="" />
         </BlogPostImageWrapper>
 
-        <BlogText dangerouslySetInnerHTML={{ __html: post.content }} />
+        <BlogText dangerouslySetInnerHTML={{ __html: `<div> ${post.content} </div>` }} />
         <ul
           style={{
             display: 'flex',
