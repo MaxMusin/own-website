@@ -397,7 +397,7 @@ class BlogIndex extends React.Component {
                     <BlogPostTags>{tag}</BlogPostTags>
                     <BlogPostDescription
                       dangerouslySetInnerHTML={{
-                        __html: node.metadata.description,
+                        __html: `<div> ${node.metadata.description} </div>`
                       }}
                     />
                     <BlogPostDate>{date} - Maxime Musin</BlogPostDate>
@@ -433,7 +433,7 @@ class BlogIndex extends React.Component {
           <Row>
             <Col col={6}>
               <AboutContent ref="aboutContent">
-                <AboutText dangerouslySetInnerHTML={{ __html: aboutText }} />
+                <AboutText dangerouslySetInnerHTML={{ __html: `<div> ${aboutText} </div>` }} />
               </AboutContent>
             </Col>
             <Col col={6}>
