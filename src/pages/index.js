@@ -1,7 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
-import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'

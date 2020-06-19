@@ -175,8 +175,6 @@ class BlogPostTemplate extends React.Component {
     const site = get(this, 'props.data.site')
     const { previous, next } = this.props.pageContext
 
-    console.log(`${site.siteMetadata.domain}${post.slug}`)
-
     return (
       <Layout location={location} width={680}>
         <Helmet title={`${post.title} | ${siteTitle}`} />
