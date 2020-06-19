@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
-import Scroll from 'react-scroll-to-element'
+import loadable from '@loadable/component'
+const Scroll = loadable(() => import('react-scroll-to-element'))
 import Button from './Button'
 import Col from './Col'
 import Row from './Row'

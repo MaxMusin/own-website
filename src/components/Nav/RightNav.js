@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react'
-import Scroll from 'react-scroll-to-element'
+import loadable from '@loadable/component'
+const Scroll = loadable(() => import('react-scroll-to-element'))
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import styled from 'styled-components'
 import { media } from '../style/mediaQueries'
@@ -71,8 +72,6 @@ const RightNav = ({ isHome }) => {
   const globalState = useContext(store)
   const { isOpen } = globalState.state
 
-  console.log(isOpen)
-
   const menuItems = {
     about: 'About',
     services: 'Services',
@@ -89,10 +88,12 @@ const RightNav = ({ isHome }) => {
   })
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }
   });
 
 

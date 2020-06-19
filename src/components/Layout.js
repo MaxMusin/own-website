@@ -1,12 +1,9 @@
 import React, { Fragment } from 'react'
-import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
-import BackgroundImage from 'gatsby-background-image'
 import { reset } from 'styled-reset'
 import styled from 'styled-components'
 import { StateProvider } from "../context/store"
 import Navbar from './Nav/Navbar'
-import Wrapper from './Wrapper'
 
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
