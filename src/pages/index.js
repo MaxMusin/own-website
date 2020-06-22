@@ -8,12 +8,13 @@ import Img from 'gatsby-image'
 import sr from '../components/ScrollReveal'
 import { trackCustomEvent } from 'gatsby-plugin-google-analytics'
 
-import Layout from '../components/Layout'
 import Row from '../components/Row'
 import Col from '../components/Col'
 import Header from '../components/Header'
 import MyForm from '../components/Form'
-import {media} from '../components/style/mediaQueries'
+import { fontSize, lineHeight } from '../components/style/Mixin'
+import Container from '../components/Container'
+import { media } from '../components/style/mediaQueries'
 
 import FeIcon from '../assets/frontend_icon.svg'
 import DesignIcon from '../assets/design_icon.svg'
@@ -21,8 +22,6 @@ import ShopIcon from '../assets/shop_icon.svg'
 import Instagram from '../assets/instagram.svg'
 import WhatsApp from '../assets/whatsapp.svg'
 import LinkedIn from '../assets/linkedin.svg'
-
-import { fontSize, lineHeight } from '../components/style/Mixin'
 
 const Section = styled.section`
   margin-bottom: 130px;
@@ -57,11 +56,11 @@ const ServiceItems = styled.div`
 
 const ServiceItem = styled(Col)`
   margin-bottom: 60px;
-  
+
   &:nth-child(3) {
-        margin-bottom: 0px;
-    }
-  
+    margin-bottom: 0px;
+  }
+
   ${media.sm`
     margin-bottom: 0px;
   `}
@@ -77,7 +76,7 @@ const ServiceItem = styled(Col)`
 
 const BlogPost = styled(Row)`
   flex-direction: column-reverse;
-  
+
   ${media.sm`
     flex-direction: row;
   `}
@@ -100,7 +99,7 @@ const BlogPostTags = styled.div`
   margin-bottom: 28px;
 `
 
-const BlogPostDescription = styled.p`
+const BlogPostDescription = styled.div`
   font-family: ${(props) => props.theme.font.primary};
   font-size: 16px;
   color: #7a6d6d;
@@ -117,28 +116,30 @@ const BlogPostDate = styled.p`
   margin-bottom: 32px;
 `
 
-const BlogPostButton = styled(AniLink)`
-  background: #ffffff;
-  border: 1px solid #e35d5b;
-  ${fontSize(16)};
-  ${lineHeight(15)};
-  font-weight: normal;
-  border-radius: 5px;
-  position: relative;
-  cursor: pointer;
-  font-family: ${(props) => props.theme.font.primary};
-  width: auto;
-  display: inline-flex;
-  color: #e35d5b;
-  padding: 10px 20px 11px;
-  letter-spacing: 1.4px;
-  text-decoration: none;
+const BlogPostButton = styled.div`
+  a {
+    background: #ffffff;
+    border: 1px solid #e35d5b;
+    ${fontSize(16)};
+    ${lineHeight(15)};
+    font-weight: normal;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    font-family: ${(props) => props.theme.font.primary};
+    width: auto;
+    display: inline-flex;
+    color: #e35d5b;
+    padding: 10px 20px 11px;
+    letter-spacing: 1.4px;
+    text-decoration: none;
+  }
 `
 
 const BlogPostImageWrapper = styled.div`
   //flex: 0 1 50%;
   margin-bottom: 48px;
- 
+
   ${media.sm`
     padding-left: 60px;
     margin-bottom: 0px;
@@ -155,7 +156,7 @@ const AboutContent = styled.div`
   //padding-right: 16px;
 `
 
-const AboutText = styled.p`
+const AboutText = styled.div`
   font-family: ${(props) => props.theme.font.primary};
   font-size: 16px;
   color: #7a6d6d;
@@ -340,7 +341,7 @@ class BlogIndex extends React.Component {
     const maxAbout = get(this, 'props.data.about_image.childImageSharp.fluid')
 
     return (
-      <Layout location={location} width={1272}>
+      <Container width={1272}>
         <Helmet title={siteTitle} />
         <Header
           heading={siteHeading}
@@ -397,25 +398,27 @@ class BlogIndex extends React.Component {
                     <BlogPostTags>{tag}</BlogPostTags>
                     <BlogPostDescription
                       dangerouslySetInnerHTML={{
-                        __html: `<div> ${node.metadata.description} </div>`
+                        __html: node.metadata.description,
                       }}
                     />
                     <BlogPostDate>{date} - Maxime Musin</BlogPostDate>
-                    <BlogPostButton
-                      cover
-                      to={`/posts/${node.slug}`}
-                      direction="left"
-                      bg="#E53935"
-                      onClick={e => {
-                        e.preventDefault()
-                        trackCustomEvent({
-                          category: "Read last blogpost",
-                          action: "Click",
-                          label: {title},
-                        })
-                      }}
-                    >
-                      Read it
+                    <BlogPostButton>
+                      <AniLink
+                        cover
+                        to={`/posts/${node.slug}`}
+                        direction="left"
+                        bg="#E53935"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          trackCustomEvent({
+                            category: 'Read last blogpost',
+                            action: 'Click',
+                            label: { title },
+                          })
+                        }}
+                      >
+                        Read it
+                      </AniLink>
                     </BlogPostButton>
                   </BlogPostContent>
                 </Col>
@@ -433,7 +436,7 @@ class BlogIndex extends React.Component {
           <Row>
             <Col col={6}>
               <AboutContent ref="aboutContent">
-                <AboutText dangerouslySetInnerHTML={{ __html: `<div> ${aboutText} </div>` }} />
+                <AboutText dangerouslySetInnerHTML={{ __html: aboutText }} />
               </AboutContent>
             </Col>
             <Col col={6}>
@@ -479,7 +482,7 @@ class BlogIndex extends React.Component {
             </Col>
           </Row>
         </Section>
-      </Layout>
+      </Container>
     )
   }
 }

@@ -1,33 +1,36 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Helmet } from 'react-helmet'
-import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
+import styled from 'styled-components'
 
 import Layout from '../components/Layout'
 import ShareButtons from '../components/ShareButtons'
-import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import { media } from '../components/style/mediaQueries'
 import { fontSize, lineHeight } from '../components/style/Mixin'
+import Container from '../components/Container'
 
-const ReturnButton = styled(AniLink)`
-  background: #ffffff;
-  border: 1px solid #e35d5b;
-  ${fontSize(16)};
-  ${lineHeight(15)};
-  font-weight: normal;
-  border-radius: 5px;
-  position: relative;
-  cursor: pointer;
-  font-family: ${(props) => props.theme.font.primary};
-  width: auto;
-  display: inline-flex;
-  color: #e35d5b;
-  padding: 10px 20px 11px;
-  letter-spacing: 1.4px;
-  text-decoration: none;
+const ReturnButton = styled.div`
+  margin-top: 60px;
+  a {
+    background: #ffffff;
+    border: 1px solid #e35d5b;
+    ${fontSize(16)};
+    ${lineHeight(15)};
+    font-weight: normal;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+    font-family: ${(props) => props.theme.font.primary};
+    width: auto;
+    display: inline-flex;
+    color: #e35d5b;
+    padding: 10px 20px 11px;
+    letter-spacing: 1.4px;
+    text-decoration: none;
+  }
 `
 
 const BlogHeader = styled.div`
@@ -103,7 +106,7 @@ const BlogText = styled.div`
     strong {
       font-family: ${(props) => props.theme.font.tertiary};
     }
-    
+
     em {
       font-style: italic;
     }
@@ -171,15 +174,16 @@ class BlogPostTemplate extends React.Component {
       'data.cosmicjsSettings.metadata.site_title'
     )
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
-    const location = get(this, 'props.location')
     const site = get(this, 'props.data.site')
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={location} width={680}>
+      <Container width={680}>
         <Helmet title={`${post.title} | ${siteTitle}`} />
-        <ReturnButton cover to={`/`} direction="right" bg="#E53935">
-          ← Back to main
+        <ReturnButton>
+          <AniLink cover to={`/`} direction="right" bg="#E53935">
+            ← Back to main
+          </AniLink>
         </ReturnButton>
 
         <BlogTitle>{post.title}</BlogTitle>
@@ -207,8 +211,8 @@ class BlogPostTemplate extends React.Component {
           <Img fluid={post.metadata.hero.local.childImageSharp.fluid} alt="" />
         </BlogPostImageWrapper>
 
-        <BlogText dangerouslySetInnerHTML={{ __html: `<div> ${post.content} </div>` }} />
-        <ul
+        <BlogText dangerouslySetInnerHTML={{ __html: post.content }} />
+        {/*<ul
           style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -232,8 +236,8 @@ class BlogPostTemplate extends React.Component {
               </Link>
             </li>
           )}
-        </ul>
-      </Layout>
+        </ul>*/}
+      </Container>
     )
   }
 }

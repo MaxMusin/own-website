@@ -11,9 +11,16 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-scroll-reveal`,
     `gatsby-plugin-transition-link`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        displayName: true,
+        minify: false,
+        transpileTemplateLiterals: false
+      },
+    },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {

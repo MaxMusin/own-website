@@ -1,6 +1,7 @@
 import React from 'react'
 import Burger from './Burger'
 import styled from 'styled-components'
+import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import { media } from '../style/mediaQueries'
 
 import Logo from '../../assets/logo.svg'
@@ -39,7 +40,7 @@ const MobileWrapper = styled.div`
 `
 
 
-const LogoWrapper = styled.div`
+const LogoWrapper = styled(AniLink)`
   width: 58px;
   height: 59px;
   svg {
@@ -51,7 +52,7 @@ const Navbar = ({ isHome }) => {
     <Nav>
       <Container>
         <MobileWrapper>
-          <LogoWrapper>
+          <LogoWrapper cover to={`/`} direction="right" bg="#E53935">
             <Logo />
           </LogoWrapper>
           <Burger />
