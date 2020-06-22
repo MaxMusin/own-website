@@ -31,7 +31,7 @@ const MobileWrapper = styled.div`
   width: calc(100% + 40px);
   padding: 12px 20px;
   margin: -12px -20px;
-  
+
   ${media.sm`
     width: auto;
     padding: 0;
@@ -39,11 +39,10 @@ const MobileWrapper = styled.div`
   `}
 `
 
-
 const LogoWrapper = styled(AniLink)`
-  width: 58px;
-  height: 59px;
-  svg {
+  a {
+    width: 58px;
+    height: 59px;
   }
 `
 
@@ -52,12 +51,14 @@ const Navbar = ({ isHome }) => {
     <Nav>
       <Container>
         <MobileWrapper>
-          <LogoWrapper cover to={`/`} direction="right" bg="#E53935">
-            <Logo />
+          <LogoWrapper>
+            <AniLink cover to={`/`} direction="right" bg="#E53935">
+              <Logo />
+            </AniLink>
           </LogoWrapper>
           <Burger />
         </MobileWrapper>
-        <RightNav isHome={isHome}/>
+        <RightNav isHome={isHome} />
       </Container>
     </Nav>
   )

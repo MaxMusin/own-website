@@ -104,42 +104,42 @@ const RightNav = ({ isHome }) => {
   });
 
 
-  const menuList = Object.keys(menuItems).map((e, i) => {
-    if (isHome) {
-      return (
-        <li key={`menuitem_${i}`}>
-          <a onClick={handleClick}>
-            <Scroll type="id" element={e}>
-              {menuItems[e]}
-            </Scroll>
-          </a>
-        </li>
-      )
-    } else {
-      return (
-        <AniLink
-              cover
-              to={`/`}
-              bg="#E53935"
-              onClick={handleClick}
-              direction="right"
-            >
-              {menuItems[e]}
-            </AniLink>
-        // <li key={`menuitem_${i}`}>
-        //   <AniLink
-        //     cover
-        //     to={`/#${e}`}
-        //     bg="#E53935"
-        //     onClick={handleClick}
-        //     direction="right"
-        //   >
-        //     {menuItems[e]}
-        //   </AniLink>
-        // </li>
-      )
-    }
-  })
+  // const menuList = Object.keys(menuItems).map((e, i) => {
+  //   if (isHome) {
+  //     return (
+  //       <li key={`menuitem_${i}`}>
+  //         <a onClick={handleClick}>
+  //           <Scroll type="id" element={e}>
+  //             {menuItems[e]}
+  //           </Scroll>
+  //         </a>
+  //       </li>
+  //     )
+  //   } else {
+  //     return (
+  //       <AniLink
+  //             cover
+  //             to={`/`}
+  //             bg="#E53935"
+  //             onClick={handleClick}
+  //             direction="right"
+  //           >
+  //             {menuItems[e]}
+  //           </AniLink>
+  //       // <li key={`menuitem_${i}`}>
+  //       //   <AniLink
+  //       //     cover
+  //       //     to={`/#${e}`}
+  //       //     bg="#E53935"
+  //       //     onClick={handleClick}
+  //       //     direction="right"
+  //       //   >
+  //       //     {menuItems[e]}
+  //       //   </AniLink>
+  //       // </li>
+  //     )
+  //   }
+  // })
 
   return (
     <MenuList open={isOpen}>
