@@ -7,6 +7,8 @@ import { media } from '../style/mediaQueries'
 import { store } from '../../context/store.js'
 import debounce from 'lodash.debounce'
 
+const MenuListo = styled.ul``
+
 const MenuList = styled.ul`
   list-style: none;
   display: flex;
@@ -17,7 +19,7 @@ const MenuList = styled.ul`
   right: 0;
   left: 0;
   width: 100%;
-  padding: 83px 8px 60px;
+  padding: 83px 8px 40px;
   transition: transform 0.3s ease-in-out;
   z-index: 30;
   position: absolute;
@@ -34,6 +36,11 @@ const MenuList = styled.ul`
 
   li {
     text-align: center;
+    padding: 4px 0;
+    
+    ${media.sm`
+        padding: 0px;
+      `}
     a {
       display: block;
       padding: 12px;
@@ -110,22 +117,55 @@ const RightNav = ({ isHome }) => {
       )
     } else {
       return (
-        <li key={`menuitem_${i}`}>
-          <AniLink
-            cover
-            to={`/#${e}`}
-            direction="right"
-            bg="#E53935"
-            onClick={handleClick}
-          >
-            {menuItems[e]}
-          </AniLink>
-        </li>
+        <AniLink
+              cover
+              to={`/`}
+              bg="#E53935"
+              onClick={handleClick}
+              direction="right"
+            >
+              {menuItems[e]}
+            </AniLink>
+        // <li key={`menuitem_${i}`}>
+        //   <AniLink
+        //     cover
+        //     to={`/#${e}`}
+        //     bg="#E53935"
+        //     onClick={handleClick}
+        //     direction="right"
+        //   >
+        //     {menuItems[e]}
+        //   </AniLink>
+        // </li>
       )
     }
   })
 
-  return <MenuList open={isOpen}>{menuList}</MenuList>
+  return (
+    <MenuList open={isOpen}>
+      {Object.keys(menuItems).map((e, i) => {
+          return (
+            <li key={`menuitem_${i}`}>
+              <AniLink
+                cover
+                to={`/#${e}`}
+                bg="#E53935"
+                direction="right"
+                onClick={handleClick}
+              >
+                {isHome ?
+                  <Scroll type="id" element={e}>
+                    {menuItems[e]}
+                  </Scroll>
+                  : <>{menuItems[e]}</>
+                }
+              </AniLink>
+            </li>
+          )
+        })
+      }
+    </MenuList>
+  )
 }
 
 export default RightNav

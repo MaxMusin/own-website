@@ -7,8 +7,8 @@ const StyledBurger = styled.div`
   display: flex;
   justify-content: space-around;
   flex-flow: column nowrap;
-  width: 2rem;
-  height: 2rem;
+  width: 36px;
+  height: 36px;
   position: relative;
   z-index: 999;
   
@@ -17,12 +17,12 @@ const StyledBurger = styled.div`
   `}
   
   div {
-    width: 2rem;
-    height: 0.25rem;
+    width: 36px;
+    height: 3px;
     background-color: ${({ open }) => open ? '#ccc' : '#333'};
     border-radius: 10px;
     transform-origin: 1px;
-    transition: all 0.3s linear;
+    transition: all 0.2s linear;
     
     &:nth-child(1) {
       transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
