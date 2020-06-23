@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useContext } from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { media } from '../style/mediaQueries'
 import { store } from '../../context/store.js'
@@ -11,6 +11,7 @@ const StyledBurger = styled.div`
   height: 36px;
   position: relative;
   z-index: 999;
+  margin-top: 4px;
   
   ${media.sm`
     display: none;
@@ -44,13 +45,11 @@ const Burger = () => {
   const globalState = useContext(store);
   const { isOpen } = globalState.state;
   return (
-    <>
-      <StyledBurger open={isOpen} onClick={() => globalState.dispatch({type: 'IS_OPEN'})}>
-        <div />
-        <div />
-        <div />
-      </StyledBurger>
-    </>
+    <StyledBurger open={isOpen} onClick={() => globalState.dispatch({type: 'IS_OPEN'})}>
+      <div />
+      <div />
+      <div />
+    </StyledBurger>
   )
 };
 

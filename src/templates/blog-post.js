@@ -40,6 +40,15 @@ const BlogHeader = styled.div`
   justify-content: space-between;
 `
 
+const BlogPostTags = styled.div`
+  font-family: ${(props) => props.theme.font.primary};
+  font-size: 14px;
+  color: #c4adad;
+  letter-spacing: 1.4px;
+  margin-bottom: 40px;
+  margin-top: -20px;
+`
+
 const Author = styled.div`
   display: flex;
   flex-direction: row;
@@ -187,6 +196,7 @@ class BlogPostTemplate extends React.Component {
         </ReturnButton>
 
         <BlogTitle>{post.title}</BlogTitle>
+        <BlogPostTags>{post.metadata.tag}</BlogPostTags>
         <BlogHeader>
           <Author>
             <AuthorImageWrapper>
@@ -258,6 +268,7 @@ export const pageQuery = graphql`
       slug
       created(formatString: "MMMM DD, YYYY")
       metadata {
+        tag
         hero {
           local {
             childImageSharp {
