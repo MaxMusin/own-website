@@ -4,7 +4,13 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://maximemusin.me/`,
+    title: `Hey, my name is Maxime`,
+    titleTemplate: "%s · Maxime Musin",
+    url: `https://maximemusin.me`,
+    description: ``,
+    image: `/images/max_header.png`,
+    twitterUsername: `@MaximeMusin`,
+
   },
   plugins: [
     `gatsby-plugin-offline`,

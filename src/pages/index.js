@@ -1,7 +1,7 @@
 import React from 'react'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import get from 'lodash/get'
-import { Helmet } from 'react-helmet'
+import SEO from '../components/Seo'
 import { graphql } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
@@ -342,7 +342,7 @@ class BlogIndex extends React.Component {
 
     return (
       <Container width={1272}>
-        <Helmet title={siteTitle} />
+        <SEO title={siteHeading} description={siteSubheading} />
         <Header
           heading={siteHeading}
           subheading={siteSubheading}
