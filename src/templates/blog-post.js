@@ -1,6 +1,6 @@
 import React from 'react'
-import { Helmet } from 'react-helmet'
 import get from 'lodash/get'
+import SEO from '../components/Seo'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
@@ -186,9 +186,24 @@ class BlogPostTemplate extends React.Component {
     const site = get(this, 'props.data.site')
     const { previous, next } = this.props.pageContext
 
+
+
+    const decodeHTML = (str) => {
+      if (str === null || str === '') {
+        return false
+      }
+      else {
+        str = str.toString()
+      }
+      const result = str.replace(/<[^>]*>/g, '');
+      const txt = document.createElement("textarea");
+      txt.innerHTML = result;
+      return txt.value;
+    }
+
     return (
       <Container width={680}>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <SEO title={post.title} description={decodeHTML(post.metadata.description)} />
         <ReturnButton>
           <AniLink cover to={`/`} direction="right" bg="#E53935">
             ← Back to main
@@ -212,7 +227,7 @@ class BlogPostTemplate extends React.Component {
           </Author>
           <ShareButtonsWrapper>
             <ShareButtons
-              url={`${site.siteMetadata.domain}${post.slug}`}
+              url={`${site.siteMetadata.siteUrl}${post.slug}`}
               title={post.title}
             />
           </ShareButtonsWrapper>
@@ -258,7 +273,7 @@ export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
-        domain: siteUrl
+        siteUrl: url
       }
     }
     cosmicjsPosts(slug: { eq: $slug }) {
@@ -269,6 +284,7 @@ export const pageQuery = graphql`
       created(formatString: "MMMM DD, YYYY")
       metadata {
         tag
+        description
         hero {
           local {
             childImageSharp {
