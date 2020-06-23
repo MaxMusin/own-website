@@ -11,6 +11,7 @@ const StyledBurger = styled.div`
   height: 36px;
   position: relative;
   z-index: 999;
+  margin-top: 4px;
   
   ${media.sm`
     display: none;

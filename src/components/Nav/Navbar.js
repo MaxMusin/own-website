@@ -24,7 +24,7 @@ const Container = styled.div`
 const MobileWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   background: white;
   position: relative;
   z-index: 40;
@@ -39,7 +39,7 @@ const MobileWrapper = styled.div`
   `}
 `
 
-const LogoWrapper = styled(AniLink)`
+const LogoWrapper = styled.div`
   a {
     width: 58px;
     height: 59px;

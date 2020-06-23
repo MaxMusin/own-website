@@ -355,18 +355,15 @@ class BlogIndex extends React.Component {
               <FeIcon />
               <SubTitleSection>Front-end development</SubTitleSection>
               <p>
-                Sed porttitor lectus nibh. Curabitur arcu erat, accumsan id
-                imperdiet et, porttitor at sem. Cras ultricies ligula sed magna
-                dictum porta.
+                Need help on front-end side? I can develop, adapt or integrate solutions to your existing project or even from scratch.
+                I also bring my expertise by analysing, defining and estimating the best technical solutions based on business requirements.
               </p>
             </ServiceItem>
             <ServiceItem col={4} className="service">
               <DesignIcon />
               <SubTitleSection>UX/UI Design</SubTitleSection>
               <p>
-                Need help with designing your project? I can create beautiful
-                website designs based on your content, or redesign old websites
-                to improve your conversions or achieve your business goals.
+                Need help with designing your project? I can create efficient website designs based on your content, or redesign old websites to improve your conversions or achieve your business goals.
               </p>
             </ServiceItem>
             <ServiceItem col={4} className="service">
