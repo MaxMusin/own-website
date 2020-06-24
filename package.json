@@ -26,6 +26,7 @@
     "gatsby-source-filesystem": "^2.2.4",
     "gatsby-transformer-sharp": "^2.4.6",
     "gsap": "^3.3.0",
+    "he": "^1.2.0",
     "lodash": "^4.17.15",
     "lodash.debounce": "^4.0.8",
     "prop-types": "^15.7.2",
