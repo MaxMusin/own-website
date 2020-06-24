@@ -228,7 +228,7 @@ class BlogPostTemplate extends React.Component {
           </Author>
           <ShareButtonsWrapper>
             <ShareButtons
-              url={`${site.siteMetadata.siteUrl}${post.slug}`}
+              url={`${site.siteMetadata.siteUrl}/${post.slug}`}
               title={post.title}
             />
           </ShareButtonsWrapper>
