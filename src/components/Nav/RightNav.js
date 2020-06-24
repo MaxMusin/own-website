@@ -23,7 +23,7 @@ const MenuList = styled.ul`
   transition: transform 0.3s ease-in-out;
   z-index: 30;
   position: absolute;
-  box-shadow: 0 4px 15px 0 rgba(0,0,0,0.09);
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.09);
 
   ${media.sm`
     position: relative;
@@ -37,13 +37,12 @@ const MenuList = styled.ul`
   li {
     text-align: center;
     padding: 4px 0;
-    
+
     ${media.sm`
         padding: 0px;
       `}
     a {
       display: block;
-      padding: 12px;
       text-align: center;
       font-family: ${(props) => props.theme.font.primary};
       font-size: 16px;
@@ -52,10 +51,15 @@ const MenuList = styled.ul`
       position: relative;
       cursor: pointer;
       text-decoration: none;
-      
+
       ${media.sm`
         display: inline-block;
       `}
+
+      span {
+        padding: 12px;
+        display: block;
+      }
     }
 
     &:last-child {
@@ -95,14 +99,13 @@ const RightNav = ({ isHome }) => {
   })
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll)
       return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
+        window.removeEventListener('scroll', handleScroll)
+      }
     }
-  });
-
+  })
 
   // const menuList = Object.keys(menuItems).map((e, i) => {
   //   if (isHome) {
@@ -144,26 +147,26 @@ const RightNav = ({ isHome }) => {
   return (
     <MenuList open={isOpen}>
       {Object.keys(menuItems).map((e, i) => {
-          return (
-            <li key={`menuitem_${i}`}>
-              <AniLink
-                cover
-                to={`/#${e}`}
-                bg="#E53935"
-                direction="right"
-                onClick={handleClick}
-              >
-                {isHome ?
-                  <Scroll type="id" element={e}>
-                    {menuItems[e]}
-                  </Scroll>
-                  : <>{menuItems[e]}</>
-                }
-              </AniLink>
-            </li>
-          )
-        })
-      }
+        return (
+          <li key={`menuitem_${i}`}>
+            <AniLink
+              cover
+              to={`/#${e}`}
+              bg="#E53935"
+              direction="right"
+              onClick={handleClick}
+            >
+              {isHome ? (
+                <Scroll type="id" element={e}>
+                  {menuItems[e]}
+                </Scroll>
+              ) : (
+                <span>{menuItems[e]}</span>
+              )}
+            </AniLink>
+          </li>
+        )
+      })}
     </MenuList>
   )
 }
