@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import get from 'lodash/get'
 import SEO from '../components/Seo'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
 import styled from 'styled-components'
+import he from 'he'
 
 import Layout from '../components/Layout'
 import ShareButtons from '../components/ShareButtons'
@@ -195,11 +196,13 @@ class BlogPostTemplate extends React.Component {
       else {
         str = str.toString()
       }
+
       const result = str.replace(/<[^>]*>/g, '');
-      const txt = document.createElement("textarea");
-      txt.innerHTML = result;
-      return txt.value;
+
+      return he.decode(result)
     }
+
+    console.log(decodeHTML(post.metadata.description))
 
     return (
       <Container width={680}>
