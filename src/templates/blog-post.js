@@ -202,8 +202,6 @@ class BlogPostTemplate extends React.Component {
       return he.decode(result)
     }
 
-    console.log(decodeHTML(post.metadata.description))
-
     return (
       <Container width={680}>
         <SEO title={post.title} description={decodeHTML(post.metadata.description)} />
